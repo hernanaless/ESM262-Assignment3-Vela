@@ -1,0 +1,19 @@
+"0","#Package is unzipped in folder ""FishPackage""
+install.packages(""FishPackage"",repos=NULL,type=""source"")
+"
+"2","* installing *source* package ‘fish’ ...
+"
+"2","** R
+"
+"2","** preparing package for lazy loading
+"
+"2","** help
+"
+"2","*** installing help indices
+"
+"2","** building package indices
+"
+"2","** testing if installed package can be loaded
+"
+"2","* DONE (fish)
+"

@@ -1,0 +1,92 @@
+---
+title: "ESM262-Assignment3-Vela"
+author: "Alejandro Vela"
+date: "6/11/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+###ESM262 - Assignment 3: Functions and Packages
+
+#### Problem 1 
+#### Write a function that summaries fish catches for different locations that takes as input:
+##### - A table that has prices for different fish.
+##### - A Table that has the number caught for each fish species for each location.
+##### - Each Location is in a different column.
+##### - Each fish in a different row.
+####Function output will be:
+##### - Most frequently caught fish in each location.
+##### - Total revenue for each location.
+##### - Total fisheries revenue sum.
+##### - If user requests it graph of revenue by location and total revenue (as text)
+
+#### Generating Random Tables for Function 1:
+```{r}
+
+# generating the price table 
+prices_glob<-c(seq(4,20))
+dollar_price_per_unit<-sample(prices_glob,4,replace=FALSE)
+type_of_fish<-c("Tuna","Catfish","Salmon","Swordfish")
+price_table<-data.frame(type_of_fish,dollar_price_per_unit)
+
+# generating location and sales table
+names_of_fish<-c("Tuna","Catfish","Salmon","Swordfish")
+type_of_fish<-sample(names_of_fish,4,replace=FALSE)
+quantity<-c(seq(50,100))
+Los_Angeles<-sample(quantity,4)
+Santa_Barbara<-sample(quantity,4)
+Ventura<-sample(quantity,4)
+San_Francisco<-sample(quantity,4)
+number_table<-data.frame(type_of_fish,Los_Angeles, Santa_Barbara, Ventura, San_Francisco)
+
+
+
+```
+#### Example of ramdon generated table for location wise sales figures: 
+
+```{r}
+number_table
+```
+#### Example of random generated table for fish and price per unit:
+```{r}
+price_table
+```
+
+#### Installing and loading the created package
+```{r}
+#Package is unzipped in folder "FishPackage"
+install.packages("FishPackage",repos=NULL,type="source")
+
+#Loading the library
+library(fish)
+
+```
+
+#### Help for both functions
+```{r}
+#getting help for the function summarize
+help(summarize)
+
+#### getting help on the function growth_estimate
+help(growth_estimator)
+```
+
+#### We test the function summarize below:
+
+```{r}
+#Testing the function with the random generated table above
+fish:::summarize(price_table,number_table,1)
+```
+
+#### Problem 2
+#### The relationship between specific growth rate (G) and temperature in °C (T) estimated by a third order polynomial (G=a+bT+cT**2+d*T**3 ), where a,b,c,d and are parameters (input of the function).
+
+
+##### We test the function growth_estimator below:
+```{r}
+values<-fish:::growth_estimator(a=-0.4970,b=0.1656,c=0.08588,d=-0.004266,temp=10)
+print("the values of growth are :")
+print(values)
+```
